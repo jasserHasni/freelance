@@ -5,7 +5,16 @@ const methodOverride = require("method-override");
 const crypto = require("crypto");
 const router = express.Router();
 
-const { Request, User } = require("./schemas.js");
+const {
+  Request,
+  Request1,
+  Request2,
+  User,
+  Document,
+  Institut,
+  Event,
+  PFE,
+} = require("./schemas.js");
 
 // ------------------------------- //
 // Register and login routes
@@ -68,6 +77,156 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.post("/cards", async (req, res) => {
+  const { option2, option3, num, gmail } = req.body;
+
+  const userData = req.cookies.userData;
+
+  // Check if user is authenticated
+  if (!userData) {
+    return res.redirect("/login");
+  }
+
+  const { email } = JSON.parse(userData);
+
+  try {
+    // Find the user in the database
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res.redirect("/login");
+    }
+    const req = await Request.findOne({ email, status: "waiting" }).select(
+      "email"
+    );
+    const req1 = await Request.findOne({
+      email,
+      status: "accepted",
+      option2: option2,
+      option3: option3,
+    }).select("email");
+    if (req) {
+      return res
+        .status(400)
+        .send("Déja Payé,Votre demande est en cours de traitement.");
+    }
+    if (req1) {
+      return res.status(400).send("Déja Payé.");
+    }
+    // Check if user has enough balance
+    if (user.balance < 30) {
+      return res
+        .status(400)
+        .send("Solde insuffisant, veuillez recharger votre compte.");
+    }
+    user.balance -= 30;
+    await user.save();
+    const newCard = new Request({
+      email,
+      option2,
+      option3,
+      num,
+      gmail,
+    });
+    await newCard.save();
+    res.status(200).send("Demande enregistrée avec succès");
+  } catch (err) {
+    console.error("Error saving data:", err);
+    res.status(500).send("An error occurred. Please try again later.");
+  }
+});
+
+router.post("/calendar", async (req, res) => {
+  const { num, gmail, seance } = req.body;
+  const userData = req.cookies.userData;
+
+  if (!userData) {
+    return res.redirect("/login");
+  }
+
+  const { email } = JSON.parse(userData);
+
+  try {
+    // Find the user in the database
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.redirect("/login");
+    }
+    const req = await Request1.findOne({
+      email,
+      seance,
+      status: "waiting",
+    }).select("email");
+    const req1 = await Request1.findOne({
+      email,
+      status: "accepted",
+      seance: seance,
+    }).select("email");
+    if (req) {
+      return res
+        .status(400)
+        .send("Déja Payé ,Votre demande est en cours de traitement.");
+    }
+    if (req1) {
+      return res.status(400).send("Déja Payé.");
+    }
+    // Check if user has enough balance
+    if (user.balance < 25) {
+      return res
+        .status(400)
+        .send("Solde insuffisant, veuillez recharger votre compte.");
+    }
+    user.balance -= 25;
+    await user.save();
+    const newCard = new Request1({
+      email,
+      num,
+      gmail,
+      seance,
+    });
+    await newCard.save();
+    res.status(200).send("Demande enregistrée avec succès");
+  } catch (err) {
+    console.error("Error saving data:", err);
+    res.status(500).send("An error occurred. Please try again later.");
+  }
+});
+
+router.post("/PFE", async (req, res) => {
+  const { titre, number, description, minimum, maximum, date, rapport } =
+    req.body;
+  try {
+    const existingRequest = await PFE.findOne({
+      number,
+      status: "waiting",
+    }).select("number");
+    if (existingRequest) {
+      return res.status(400).json({
+        message:
+          "Une demande est déjà en cours de traitement. Nous vous recontacterons dans les plus brefs délais.",
+      });
+    }
+
+    const newPFE = new PFE({
+      titre,
+      number,
+      description,
+      minimum,
+      maximum,
+      date,
+      rapport,
+    });
+
+    await newPFE.save();
+    res.status(200).json({ message: "Demande enregistrée avec succès" });
+  } catch (err) {
+    console.error("Error saving data:", err);
+    res.status(500).json({
+      message: "Une erreur s'est produite. Veuillez remplir tous les details.",
+    });
+  }
+});
+
+// *************************************************
 router.get("/password-reset", (req, res) => {
   res.render("forgetpassword", {
     message: false,
@@ -296,6 +455,107 @@ router.post("/password-reset/:token", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.send("An error occurred. Please try again later.");
+  }
+});
+
+// ***************************************************
+
+router.post("/profile", async (req, res) => {
+  try {
+    const userData = req.cookies.userData;
+    if (!userData) {
+      return res.redirect("/login");
+    }
+
+    const { email } = JSON.parse(userData); // Extract email from cookie data
+    if (!email) {
+      return res
+        .status(400)
+        .json({ message: "Email is required for this action" });
+    }
+    const { name, number, niveau, street, city, state, zip } = req.body;
+
+    const updatedUser = await User.findOneAndUpdate(
+      { email }, // Find by email
+      { name, number, niveau, street, city, state, zip }, // Update fields
+      { new: true } // Return updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Redirect to profile with success parameter
+    res.redirect("/profile?success=true");
+  } catch (error) {
+    console.error("Error handling profile request:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+router.post("/profile-pay", async (req, res) => {
+  try {
+    const userData = req.cookies.userData;
+    if (!userData) {
+      return res.redirect("/login");
+    }
+    const { email } = JSON.parse(userData);
+    const req1 = await Request2.findOne({ email, status: "waiting" }).select(
+      "email"
+    );
+    if (req1) {
+      return res
+        .status(400)
+        .send("Déja Payé,Votre demande est en cours de traitement.");
+    }
+
+    const { credits, num, aut } = req.body;
+    if (!credits || !num || !aut) {
+      return res.render("profile-pay", {
+        wrong_montant: false,
+        wrong_champ: true,
+        wrong_number: false,
+        wrong_auto: false,
+      });
+    }
+
+    if (!/^(?:[2-9]\d(\.\d+)?|[1-9]\d{2,}(\.\d+)?)$/.test(credits)) {
+      return res.render("profile-pay", {
+        wrong_montant: true,
+        wrong_champ: false,
+        wrong_number: false,
+        wrong_auto: false,
+      });
+    }
+
+    if (!/^(\+216)?[2-9][0-9]{7}$/.test(num)) {
+      return res.render("profile-pay", {
+        wrong_montant: false,
+        wrong_champ: false,
+        wrong_number: true,
+        wrong_auto: false,
+      });
+    }
+
+    if (!/^\d{6}$/.test(aut)) {
+      return res.render("profile-pay", {
+        wrong_montant: false,
+        wrong_champ: false,
+        wrong_number: false,
+        wrong_auto: true,
+      });
+    }
+    const newCard = new Request2({
+      email,
+      credits,
+      num,
+      aut,
+    });
+    await newCard.save();
+    res.redirect("/profile");
+  } catch (error) {
+    console.error("Error handling profile request:", error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 

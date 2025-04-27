@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <!-- Site Metas -->
+    <title>TunAcademy</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link
+      rel="shortcut icon"
+      href="images/logo.png"
+      type="image/x-icon"
+    />
+    <link rel="apple-touch-icon" href="#" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- Pogo Slider CSS -->
+    <link rel="stylesheet" href="css/pogo-slider.min.css" />
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css" />
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta charset="utf-8" />
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding-top: 10px;
+        color: #2e323c;
+        background: #f5f6fa;
+        position: relative;
+        height: 100%;
+      }
+      .account-settings .user-profile {
+        margin: 0 0 1rem 0;
+        padding-bottom: 1rem;
+        text-align: center;
+      }
+      .account-settings .user-profile .user-avatar {
+        margin: 0 0 1rem 0;
+      }
+      .account-settings .user-profile .user-avatar img {
+        width: 90px;
+        height: 90px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+      }
+      .account-settings .user-profile h5.user-name {
+        margin: 0 0 0.5rem 0;
+      }
+      .account-settings .user-profile h6.user-email {
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: #9fa8b9;
+      }
+      .account-settings .about {
+        margin: 2rem 0 0 0;
+        text-align: center;
+      }
+      .account-settings .about h5 {
+        margin: 0 0 15px 0;
+        color: #007ae1;
+      }
+      .account-settings .about p {
+        font-size: 0.825rem;
+      }
+      .form-control {
+        border: 1px solid #cfd1d8;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        font-size: 0.825rem;
+        background: #ffffff;
+        color: #2e323c;
+      }
+
+      .card {
+        background: #ffffff;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: 0;
+        margin-bottom: 1rem;
+      }
+
+/* Make the modal full-width on smaller screens */
+@media (max-width: 576px) {
+  .modal-dialog {
+    max-width: 100%;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+}
+
+/* For medium screens (tablets), you can adjust the width of the modal */
+@media (max-width: 768px) {
+  .modal-dialog {
+    max-width: 90%;
+    position: relative;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-top: 10px;
+  }
+}
+
+/* For larger screens, adjust the modal width as needed */
+@media (min-width: 992px) {
+  .modal-dialog {
+    max-width: 40%; /* Or any width you prefer */
+    position: relative;
+    margin-top: 80px;
+  }
+}
+
+
+      
+    </style>
+    
+  </head>
+  <body>
+    <div id="flex-position">
+      <header class="top-header">
+        <nav class="navbar header-nav navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/"
+              ><img style="width: 220px" src="images/logo.png" alt="image"
+            /></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbar-wd"
+              aria-controls="navbar-wd"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navbar-wd"
+            >
+              <ul class="navbar-nav">
+                <li><a class="nav-link active" href="/">Acceuil</a></li>
+                <li><a class="nav-link" href="/pfe">Pfe</a></li>
+                <% if (loggedIn) { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/profile">My Account</a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+<!-- Modal -->
+
+<div class="modal-dialog modal-dialog-centered" role="document" >
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="exampleModalLabel">
+        Suivez ces instructions pour obtenir du solde :
+      </h4>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+        <% if (wrong_champ) { %>
+          <div class="alert alert-danger" role="alert">
+            Tous les champs sont requis.
+          </div>
+        <% } %>
+      
+        <% if (wrong_montant) { %>
+          <div class="alert alert-danger" role="alert">
+            Minimum 20dt.
+          </div>
+        <% } %>
+      
+        <% if (wrong_number) { %>
+          <div class="alert alert-danger" role="alert">
+            Le numéro doit être valide.
+          </div>
+        <% } %>
+      
+        <% if (wrong_auto) { %>
+          <div class="alert alert-danger" role="alert">
+            Le numéro d'autorisation doit être valide.
+          </div>
+        <% } %>
+      
+
+      <ol>
+        <li style="font-weight:bolder; margin-bottom: 10px;">-Payer Le Montant Vers 90324290 Avec D17</li>
+        <li>
+            <form
+            id="payment-form"
+            method="POST"
+            enctype="application/x-www-form-urlencoded"
+            action="/profile-pay"
+          >
+            <!-- Hidden Input for Action -->
+            <input type="hidden" name="action" value="paiment" />
+          
+            <!-- Montant en TND -->
+            <div class="form-group">
+              <label for="credits" class="col-form-label">Montant en TND (Minimum 20dt):</label>
+              <input
+                type="text"
+                class="form-control"
+                id="credits"
+                name="credits"
+                required
+                placeholder="Entrez le montant"
+                pattern="^(?:[2-9]\d(\.\d+)?|[1-9]\d{2,}(\.\d+)?)$"
+                title="Minimum 20dt"
+              />
+            </div>
+          
+            <!-- Numéro de téléphone -->
+            <div class="form-group">
+              <label for="phone-number" class="col-form-label">Votre Numéro De Téléphone:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone-number"
+                name="num"
+                required
+                placeholder="Entrez votre numéro de téléphone"
+                pattern="^(\+216)?[2-9][0-9]{7}$"
+                title="Entrez un numéro valide"
+              />
+            </div>
+          
+            <!-- Exemple de numéro d'autorisation -->
+            <div class="mb-3">
+              <label for="auth-example" class="form-label">
+                Voici un exemple de numéro d'autorisation de reçu:
+              </label>
+              <img src="/images/cap.png" alt="Exemple de reçu" class="img-fluid" />
+            </div>
+          
+            <!-- Numéro d'autorisation -->
+            <div class="form-group">
+              <label for="auth-number" class="col-form-label">Entrer Le Numéro D'Autorisation Depuis Le Journal D17:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="auth-number"
+                name="aut"
+                required
+                placeholder="Numéro d'autorisation"
+                pattern="^\d{6}$"
+                title="Entrez un numéro d'autorisation valide."
+                aria-describedby="auth-help"
+              />
+              <small id="auth-help" class="form-text text-muted">Exemple: 887986</small>
+            </div>
+          
+            <!-- Contact Support -->
+            <p class="mt-3">
+              S'il y a un problème, contactez-nous ici :
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+            </p>
+          
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary" onclick="this.disabled=true; this.form.submit();">
+              Confirmer
+            </button>
+            
+          </form>
+          
+        </li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+
+<script
+data-cfasync="false"
+src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"></script>
+<script src="js/profile-pay.js"></script>
+
+</body>
+</html>

@@ -16,7 +16,17 @@ const crypto = require("crypto");
 const app = express();
 const PORT = 80;
 
-const { Request, User, Contact } = require("./api/schemas.js");
+const {
+  Request,
+  Request1,
+  Request2,
+  User,
+  Document,
+  Institut,
+  Event,
+  Matiere,
+  Contact,
+} = require("./api/schemas.js");
 
 const mongoDB = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWD}@tunacademy.ctcx2.mongodb.net/`;
 
@@ -53,6 +63,33 @@ function checkUser(req, res, next) {
 }
 
 app.use(checkUser);
+
+const router = require("./api/routes.js");
+app.use("/", router);
+
+const router_requests = require("./api/check_requests.js");
+app.use("/", router_requests);
+
+const router_events = require("./api/events.js");
+app.use("/", router_events);
+
+const documents_info = require("./api/documents.js");
+app.use("/", documents_info);
+
+const instituts_info = require("./api/institut.js");
+app.use("/", instituts_info);
+
+const client_post = require("./api/client_post.js");
+app.use("/", client_post);
+
+const admin = require("./api/only_admin.js");
+app.use("/", admin);
+
+const matiere = require("./api/matieres.js");
+app.use("/", matiere);
+
+const Contact1 = require("./api/contact.js");
+app.use("/", Contact1);
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`The server is running on http://localhost:${PORT}`);

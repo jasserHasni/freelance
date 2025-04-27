@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+.university {
+  position: absolute;
+  font-family: "Muli", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.droplist-university-1 {
+  font-family: "Arial", sans-serif;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  font-size: 35px;
+}
+
+.droplist-university {
+  margin: 20px;
+  font-size: 14px;
+}
+.btn {
+  margin-top: 40px;
+  width: 150px;
+}
+@media (max-width: 767px) {
+  .droplist-university-1 {
+    font-size: 20px;
+  }
+  .droplist-university {
+    font-size: 12px;
+  }
+  .btn {
+    width: 100px;
+  }
+}

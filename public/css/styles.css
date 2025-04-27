@@ -1,0 +1,402 @@
+body {
+  font-family: "Muli", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  flex: 2;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  body {
+    font-family: "Muli", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column; /* Default direction for larger screens */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  header {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .course-meta {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .course-meta .badge {
+    background-color: #ffd700;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  .course-meta .rating {
+    margin-right: 10px;
+  }
+
+  .details,
+  .related-topics,
+  .trusted-companies {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .details h2,
+  .related-topics h2,
+  .trusted-companies h2 {
+    margin-top: 0;
+  }
+
+  .details ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .details ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .details ul li:before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+  }
+
+  .related-topics .topic-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .trusted-companies .companies {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .trusted-companies .companies span {
+    background-color: #e9ecef;
+    padding: 10px 20px;
+    border-radius: 4px;
+  }
+
+  .course-purchase img {
+    width: 100%; /* Ensure image spans full width of container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px;
+  }
+
+  .course-purchase h3 {
+    font-size: 2rem;
+    color: #007bff;
+    margin: 20px 0;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .add-to-cart {
+    background-color: #6c757d;
+    color: #fff;
+  }
+
+  .buy-now {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .guarantee {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .course-includes h4 {
+    margin-top: 0;
+  }
+
+  .course-includes ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .course-includes ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .course-includes ul li:before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+  }
+
+  .apply-coupon {
+    display: flex;
+    gap: 10px;
+  }
+
+  .apply-coupon input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+
+  .apply-coupon .apply {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+
+
+    .details,
+    .related-topics,
+    .trusted-companies {
+      margin-top: 20px; /* Ensure spacing */
+      padding: 10px; /* Adjust padding */
+    }
+
+    .related-topics .topic-btn {
+      margin-right: 0; /* Remove right margin */
+      margin-bottom: 10px; /* Add space below */
+    }
+
+    .trusted-companies .companies {
+      flex-direction: column; /* Stack items vertically on small screens */
+      align-items: flex-start;
+    }
+
+    .trusted-companies .companies span {
+      margin-bottom: 10px; /* Space between items */
+    }
+  }
+
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.course-meta {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.course-meta .badge {
+  background-color: #ffd700;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.course-meta .rating {
+  margin-right: 10px;
+}
+
+.details,
+.related-topics,
+.trusted-companies {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.details h2,
+.related-topics h2,
+.trusted-companies h2 {
+  margin-top: 0;
+}
+
+.details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.details ul li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.details ul li:before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #4caf50;
+}
+
+.related-topics .topic-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.trusted-companies .companies {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.trusted-companies .companies span {
+  background-color: #e9ecef;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.course-purchase {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 0px;
+}
+
+.course-purchase img {
+  width: 100%; /* Ensure image spans full width of container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px;
+}
+
+.course-purchase h3 {
+  font-size: 2rem;
+  color: #007bff;
+  margin: 20px 0;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.add-to-cart {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.buy-now {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.guarantee {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.course-includes h4 {
+  margin-top: 0;
+}
+
+.course-includes ul {
+  list-style: none;
+  padding: 0;
+}
+
+.course-includes ul li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.course-includes ul li:before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #4caf50;
+}
+
+.apply-coupon {
+  display: flex;
+  gap: 10px;
+}
+
+.apply-coupon input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.apply-coupon .apply {
+  background-color: #007bff;
+  color: #fff;
+}
